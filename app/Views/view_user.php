@@ -42,45 +42,51 @@
             <?php } ?>
         </ul>
     </li>
-    <li class="nav-item">
-        <a href="<?= base_url('spt'); ?>" class="nav-link">
-            <i class="nav-icon far fa fa-file"></i>
+    <li class="nav-item has-treeview">
+        <a href="#" class="nav-link">
+            <i class="nav-icon fas fa fa-th-list"></i>
             <p>
-                SPT
+                Transaksi
+                <i class="fas fa-angle-left right"></i>
             </p>
         </a>
+        <ul class="nav nav-treeview ">
+            <li class="nav-item">
+                <a href="<?= base_url('pegawai'); ?>" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Barang Masuk</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="<?= base_url('tujuan'); ?>" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Barang Keluar</p>
+                </a>
+            </li>
+        </ul>
     </li>
-    <li class="nav-item">
-        <a href="<?= base_url('keberangkatan'); ?>" class="nav-link">
-            <i class="nav-icon fa fa-plane"></i>
-            <p>
-                Keberangkatan
-            </p>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a href="<?= base_url('sppd'); ?>" class="nav-link">
-            <i class="nav-icon far fa fa-file"></i>
-            <p>
-                SPPD
-            </p>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a href="<?= base_url('spj'); ?>" class="nav-link">
-            <i class="nav-icon fas fa-edit"></i>
-            <p>
-                SPJ
-            </p>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a href="<?= base_url('laporan'); ?>" class="nav-link">
-            <i class="nav-icon far fa fa-file"></i>
+    <li class="nav-item has-treeview">
+        <a href="#" class="nav-link">
+            <i class="nav-icon fas fa fa-th-list"></i>
             <p>
                 Laporan
+                <i class="fas fa-angle-left right"></i>
             </p>
         </a>
+        <ul class="nav nav-treeview ">
+            <li class="nav-item">
+                <a href="<?= base_url('pegawai'); ?>" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Laporan Master</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="<?= base_url('tujuan'); ?>" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Laporan Transaksi</p>
+                </a>
+            </li>
+        </ul>
     </li>
     <li class="nav-item">
         <a href="<?= base_url('profile'); ?>" class="nav-link">
