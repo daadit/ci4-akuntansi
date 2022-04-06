@@ -266,7 +266,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary mt-2 mb-2" data-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-primary mt-2 mb-2 mr-2">Simpan</button>
+                        <button type="submit" class="btn btn-primary mt-2 mb-2 mr-2">Edit</button>
                     </div>
                 </div>
             </div>

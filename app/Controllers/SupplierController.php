@@ -88,9 +88,9 @@ class SupplierController extends BaseController
         if ($this->validate($rules)) {
             $model = new Supplier();
             $data = array(
-                'supplierNama' => $this->request->getPost('email'),
-                'supplierAlamat' => $this->request->getPost('nama'),
-                'supplierTelp' => $this->request->getPost('level'),
+                'supplierNama' => $this->request->getPost('nama'),
+                'supplierAlamat' => $this->request->getPost('alamat'),
+                'supplierTelp' => $this->request->getPost('notelp'),
                 'supplierUpdatedAt' => date('Y-m-d H:i:s'),
             );
             $model->updateSupplier($data, $id);
