@@ -102,16 +102,6 @@ class SupplierController extends BaseController
         }
     }
 
-    // public function update($id)
-    // {
-    //     $model = new User();
-    //     $data = [
-    //         'user' => $model->getUserDetail($id)->getResultArray(),
-    //         'validation' => \Config\Services::validation()
-    //     ];
-    //     echo view('view_edit_user', $data);
-    // }
-
     public function delete()
     {
         $model = new Supplier();
@@ -121,10 +111,10 @@ class SupplierController extends BaseController
         return redirect()->to('/supplier');
     }
 
-    // public function laporan()
-    // {
-    //     $model = new User();
-    //     $data['user'] = $model->getUser()->getResultArray();
-    //     echo view('laporan/laporan_user', $data);
-    // }
+    public function laporan()
+    {
+        $model = new Supplier();
+        $data['supplier'] = $model->getSupplier()->getResultArray();
+        echo view('laporan/laporan_supplier', $data);
+    }
 }
