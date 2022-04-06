@@ -112,11 +112,11 @@
 
 <div class="content-header">
     <div class="container-fluid">
-        <div class="row mb-2 mt-4">
+        <div class="row mt-2">
             <div class="col-sm-12">
-                <div class="alert alert-info" role="alert">
-                    <h6 class="mt-2 text-white">DINAS PERKEBUNAN PROVINSI SUMATERA BARAT</h6>
-                    <h5 class="m-0 text-white">Selamat Datang di Sistem Informasi Laporan Anggaran Perjalanan Dinas</h5>
+                <div class="alert alert-secondary" role="alert">
+                    <h6 class="mt-2 text-white">TOKO 73 </h6>
+                    <h5 class="m-0 text-white">Selamat Datang di Sistem Informasi Akuntansi Persediaan Barang Dagang</h5>
                 </div>
             </div>
         </div>

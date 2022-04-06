@@ -143,12 +143,12 @@
             </div>
         <?php } ?>
         <div class="card-header">
-            <a href="<?= base_url('supplier/tambah'); ?>" class="btn btn-primary"><i class="fa fa-plus mr-2"></i>Tambah Data</a>
+            <a data-toggle="modal" data-target="#addModal" class="btn btn-primary"><i class="fa fa-plus mr-2"></i>Tambah Data</a>
             <a href="<?= base_url('supplier/laporan'); ?>" target="__blank" class="btn btn-info"><i class="fa fa-print mr-2"></i>Cetak</a>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-            <table id="table" class="table table-bordered table-striped">
+            <table id="table" class="table table-striped">
                 <thead>
                     <tr>
                         <th>No.</th>
@@ -179,6 +179,52 @@
     </div>
 </div>
 
+<form action="<?= base_url('supplier/save'); ?>" enctype="multipart/form-data" method="POST">
+    <?= csrf_field(); ?>
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title">Tambah Supplier</h6>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="mb-3">
+                                <label>Nama Supplier</label>
+                                <input type="text" class="form-control" placeholder="Masukan nama tempat" id="nama" name="nama" required autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="mb-3">
+                                <label>Alamat</label>
+                                <textarea class="form-control" rows="3" name="alamat" id="alamat" required placeholder="Masukan alamat"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="mb-3">
+                                <label>Nomor Telepon</label>
+                                <input type="text" class="form-control" onkeypress="return onlyNumber(event)" placeholder="Masukan nomor telepon" id="notelp" name="notelp" required autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary mt-2 mb-2" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary mt-2 mb-2 mr-2">Simpan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
 <?php foreach ($supplier as $row) : ?>
     <form action="<?= base_url('supplier/delete'); ?>" enctype="multipart/form-data" method="POST">
         <?= csrf_field(); ?>
@@ -204,5 +250,14 @@
         </div>
     </form>
 <?php endforeach; ?>
+
+<script>
+    function onlyNumber(event) {
+        var angka = (event.which) ? event.which : event.keyCode
+        if (angka != 46 && angka > 31 && (angka < 48 || angka > 57))
+            return false;
+        return true;
+    }
+</script>
 
 <?= $this->endSection(); ?>
