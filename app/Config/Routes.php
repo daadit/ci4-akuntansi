@@ -50,6 +50,14 @@ $routes->post('/supplier/save', 'SupplierController::save', ['filter' => 'auth']
 $routes->post('/supplier/edit', 'SupplierController::edit', ['filter' => 'auth']);
 $routes->post('/supplier/delete', 'SupplierController::delete', ['filter' => 'auth']);
 $routes->get('/supplier/laporan', 'SupplierController::laporan', ['filter' => 'auth']);
+// Barang
+$routes->get('/barang', 'BarangController::index', ['filter' => 'auth']);
+$routes->get('/barang/tambah', 'BarangController::tambah', ['filter' => 'auth']);
+$routes->post('/barang/save', 'BarangController::save', ['filter' => 'auth']);
+$routes->get('/barang/update/(:segment)', 'BarangController::update/$1', ['filter' => 'auth']);
+$routes->post('/barang/edit', 'BarangController::edit', ['filter' => 'auth']);
+$routes->post('/barang/delete', 'BarangController::delete', ['filter' => 'auth']);
+$routes->get('/barang/laporan', 'BarangController::laporan', ['filter' => 'auth']);
 /*
  * --------------------------------------------------------------------
  * Additional Routing

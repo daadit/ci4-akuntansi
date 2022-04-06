@@ -9,8 +9,8 @@ class BarangController extends BaseController
     public function index()
     {
         $model = new Barang();
-        $data['supplier'] = $model->getSupplier()->getResultArray();
-        echo view('view_supplier', $data);
+        $data['barang'] = $model->getBarang()->getResultArray();
+        echo view('view_barang', $data);
     }
 
     public function save()
