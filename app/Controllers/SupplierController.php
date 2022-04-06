@@ -57,50 +57,50 @@ class SupplierController extends BaseController
         }
     }
 
-    // public function edit()
-    // {
-    //     $rules = [
-    //         'nama' => [
-    //             'rules' => 'required|max_length[100]',
-    //             'errors' => [
-    //                 'required' => 'Nama harus diisi',
-    //                 'max_length' => 'Kolom nama tidak boleh lebih dari 100 karakter'
-    //             ]
-    //         ],
-    //         'password' => [
-    //             'rules' => 'required|min_length[4]|max_length[100]',
-    //             'errors' => [
-    //                 'required' => 'Password harus diisi',
-    //                 'max_length' => 'Kolom password tidak boleh lebih dari 100 karakter',
-    //                 'min_length' => 'Kolom password setidaknya terdiri dari 4 karakter'
-    //             ]
-    //         ],
-    //         'level' => [
-    //             'rules' => 'required',
-    //             'errors' => [
-    //                 'required' => 'Level harus diisi'
-    //             ]
-    //         ]
-    //     ];
+    public function edit()
+    {
+        $rules = [
+            'nama' => [
+                'rules' => 'required|max_length[100]',
+                'errors' => [
+                    'required' => 'Nama harus diisi',
+                    'max_length' => 'Kolom nama tidak boleh lebih dari 100 karakter'
+                ]
+            ],
+            'alamat' => [
+                'rules' => 'required|max_length[255]',
+                'errors' => [
+                    'required' => 'Alamat harus diisi',
+                    'max_length' => 'Kolom alamat tidak boleh lebih dari 255 karakter'
+                ]
+            ],
+            'notelp' => [
+                'rules' => 'required|max_length[20]',
+                'errors' => [
+                    'required' => 'Nomor Telepon harus diisi',
+                    'max_length' => 'Kolom nomor telepon tidak boleh lebih dari 20 karakter'
+                ]
+            ]
+        ];
 
-    //     $id = $this->request->getPost('id');
+        $id = $this->request->getPost('id');
 
-    //     if ($this->validate($rules)) {
-    //         $model = new User();
-    //         $data = array(
-    //             'userEmail' => $this->request->getPost('email'),
-    //             'userNama' => $this->request->getPost('nama'),
-    //             'userPassword' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
-    //             'userLevel' => $this->request->getPost('level')
-    //         );
-    //         $model->updateUser($data, $id);
-    //         session()->setFlashdata('success', 'Berhasil menyimpan data');
-    //         return redirect()->to('/user');
-    //     } else {
-    //         $validation = \Config\Services::validation();
-    //         return redirect()->to('/user/update/' . $id)->withInput()->with('validation', $validation);
-    //     }
-    // }
+        if ($this->validate($rules)) {
+            $model = new Supplier();
+            $data = array(
+                'supplierNama' => $this->request->getPost('email'),
+                'supplierAlamat' => $this->request->getPost('nama'),
+                'supplierTelp' => $this->request->getPost('level'),
+                'supplierUpdatedAt' => date('Y-m-d H:i:s'),
+            );
+            $model->updateSupplier($data, $id);
+            session()->setFlashdata('success', 'Berhasil menyimpan data');
+            return redirect()->to('/supplier');
+        } else {
+            session()->setFlashdata('failed', 'Gagal mengedit, ada kesalahan pada inputan anda' . $this->validator->listErrors());
+            return redirect()->to('/supplier');
+        }
+    }
 
     // public function update($id)
     // {
@@ -112,14 +112,14 @@ class SupplierController extends BaseController
     //     echo view('view_edit_user', $data);
     // }
 
-    // public function delete()
-    // {
-    //     $model = new User();
-    //     $id = $this->request->getPost('id');
-    //     $model->deleteUser($id);
-    //     session()->setFlashdata('success', 'Berhasil menghapus data');
-    //     return redirect()->to('/user');
-    // }
+    public function delete()
+    {
+        $model = new Supplier();
+        $id = $this->request->getPost('id');
+        $model->deleteSupplier($id);
+        session()->setFlashdata('success', 'Berhasil menghapus data');
+        return redirect()->to('/supplier');
+    }
 
     // public function laporan()
     // {

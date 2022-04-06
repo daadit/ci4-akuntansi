@@ -47,6 +47,8 @@ $routes->get('/user/laporan', 'UserController::laporan', ['filter' => 'auth']);
 // Supplier
 $routes->get('/supplier', 'SupplierController::index', ['filter' => 'auth']);
 $routes->post('/supplier/save', 'SupplierController::save', ['filter' => 'auth']);
+$routes->post('/supplier/edit', 'SupplierController::edit', ['filter' => 'auth']);
+$routes->post('/supplier/delete', 'SupplierController::delete', ['filter' => 'auth']);
 /*
  * --------------------------------------------------------------------
  * Additional Routing

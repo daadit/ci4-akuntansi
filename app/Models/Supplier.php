@@ -11,11 +11,6 @@ class Supplier extends Model
         $bulder = $this->db->table('tb_supplier');
         return $bulder->get();
     }
-    public function getSupplierDetail($id)
-    {
-        $bulder = $this->db->table('tb_supplier')->where('supplierId', $id);
-        return $bulder->get();
-    }
     public function saveSupplier($data)
     {
         $query = $this->db->table('tb_supplier')->insert($data);

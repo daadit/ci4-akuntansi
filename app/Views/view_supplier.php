@@ -167,7 +167,7 @@
                             <td> <?= $row['supplierAlamat']; ?></td>
                             <td> <?= $row['supplierTelp']; ?></td>
                             <td style="text-align: center;">
-                                <a href="<?= base_url(); ?>/supplier/update/<?= $row['supplierId']; ?>" class="btn-sm btn-primary btn-update"><i class="fa fa-edit"></i></a>
+                                <a data-toggle="modal" data-target="#editModal<?= $row['supplierId']; ?>" class="btn-sm btn-primary btn-update"><i class="fa fa-edit"></i></a>
                                 <a class="btn-sm btn-danger btn-delete" data-toggle="modal" data-target="#deleteModal<?= $row['supplierId']; ?>"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
@@ -226,6 +226,52 @@
 </form>
 
 <?php foreach ($supplier as $row) : ?>
+    <form action="<?= base_url('supplier/edit'); ?>" enctype="multipart/form-data" method="POST">
+        <?= csrf_field(); ?>
+        <div class="modal fade" id="editModal<?= $row['supplierId']; ?>" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-md" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title">Edit Supplier</h6>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" name="id" required value="<?= $row['supplierId']; ?>" />
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="mb-3">
+                                    <label>Nama Supplier</label>
+                                    <input type="text" value="<?= $row['supplierNama']; ?>" class="form-control" placeholder="Masukan nama tempat" id="nama" name="nama" required autocomplete="off">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="mb-3">
+                                    <label>Alamat</label>
+                                    <textarea class="form-control" rows="3" name="alamat" id="alamat" required placeholder="Masukan alamat"><?= $row['supplierAlamat']; ?></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="mb-3">
+                                    <label>Nomor Telepon</label>
+                                    <input type="text" class="form-control" value="<?= $row['supplierTelp']; ?>" onkeypress="return onlyNumber(event)" placeholder="Masukan nomor telepon" id="notelp" name="notelp" required autocomplete="off">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary mt-2 mb-2" data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary mt-2 mb-2 mr-2">Simpan</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
     <form action="<?= base_url('supplier/delete'); ?>" enctype="multipart/form-data" method="POST">
         <?= csrf_field(); ?>
         <div class="modal" tabindex="-1" id="deleteModal<?= $row['supplierId']; ?>">
