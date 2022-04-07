@@ -13,6 +13,12 @@ class BarangController extends BaseController
         echo view('view_barang', $data);
     }
 
+    public function tambah()
+    {
+        $data['validation'] = \Config\Services::validation();
+        echo view('view_tambah_barang', $data);
+    }
+
     public function save()
     {
         $rules = [

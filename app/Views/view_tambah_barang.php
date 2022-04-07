@@ -127,95 +127,63 @@
 </div>
 <div class="container">
     <div class="card">
-        <?php if (session()->getFlashdata('success')) { ?>
-            <div class="alert alert-success icons-alert m-2">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <?php echo session()->getFlashdata('success'); ?>
-            </div>
-        <?php } else if (session()->getFlashdata('failed')) { ?>
-            <div class="alert alert-danger icons-alert m-2">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <?php echo session()->getFlashdata('failed'); ?>
-            </div>
-        <?php } ?>
         <div class="card-header">
-            <a href="<?= base_url('barang/tambah'); ?>" class="btn btn-primary"><i class="fa fa-plus mr-2"></i>Tambah Data</a>
-            <a href="<?= base_url('barang/laporan'); ?>" target="__blank" class="btn btn-info"><i class="fa fa-print mr-2"></i>Cetak</a>
+            <h5>Tambah data</h5>
         </div>
-        <!-- /.card-header -->
-        <div class="card-body">
-            <table id="table" class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>No.</th>
-                        <th>Kode</th>
-                        <th>Nama</th>
-                        <th>Satuan</th>
-                        <th>Stok</th>
-                        <th>Harga</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php $no = 0;
-                    foreach ($barang as $row) : $no++ ?>
-                        <tr>
-                            <td> <?= $no; ?></td>
-                            <td> <?= $row['barangKode']; ?></td>
-                            <td> <?= $row['barangNama']; ?></td>
-                            <td> <?= $row['barangSatuan']; ?></td>
-                            <td> <?= $row['barangStok']; ?></td>
-                            <td> <?= "Rp. " . number_format($row['barangHargaJual'], 2, ',', '.') ?></td>
-                            <td style="text-align: center;">
-                                <a data-toggle="modal" data-target="#editModal<?= $row['barangId']; ?>" class="btn-sm btn-primary btn-update"><i class="fa fa-edit"></i></a>
-                                <a class="btn-sm btn-danger btn-delete" data-toggle="modal" data-target="#deleteModal<?= $row['barangId']; ?>"><i class="fa fa-trash"></i></a>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-        </div>
-        <!-- /.card-body -->
-    </div>
-</div>
-
-<?php foreach ($barang as $row) : ?>
-    <form action="<?= base_url('barang/delete'); ?>" enctype="multipart/form-data" method="POST">
-        <?= csrf_field(); ?>
-        <div class="modal" tabindex="-1" id="deleteModal<?= $row['barangId']; ?>">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Hapus Barang</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+        <form action="<?= base_url('user/save'); ?>" method="POST" enctype="multipart/form-data">
+            <?= csrf_field(); ?>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" class="form-control <?= ($validation->hasError('email')) ? 'is-invalid' : ''; ?>" id="email" name="email" value="<?= old('email'); ?>" required placeholder="Masukan email">
+                            <div class="invalid-feedback">
+                                <?= $validation->getError('email'); ?>
+                            </div>
+                        </div>
                     </div>
-                    <div class="modal-body">
-                        <input type="hidden" name="id" required value="<?= $row['barangId']; ?>" />
-                        <h6>Yakin ingin menghapus data ini?</h6>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Nama</label>
+                            <input type="text" class="form-control <?= ($validation->hasError('nama')) ? 'is-invalid' : ''; ?>" id="nama" name="nama" value="<?= old('nama'); ?>" required placeholder="Masukan nama">
+                            <div class="invalid-feedback">
+                                <?= $validation->getError('nama'); ?>
+                            </div>
+                        </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
-                        <button type="submit" class="btn btn-primary mt-2 mb-2 mr-2">Yakin</button>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" class="form-control <?= ($validation->hasError('password')) ? 'is-invalid' : ''; ?>" id="password" name="password" required placeholder="Masukan password">
+                            <div class="invalid-feedback">
+                                <?= $validation->getError('password'); ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Level</label>
+                            <select name="level" id="level" required class="form-control <?= ($validation->hasError('level')) ? 'is-invalid' : ''; ?>">
+                                <option value="1">Admin</option>
+                                <option value="0">Super Admin</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                <?= $validation->getError('level'); ?>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </form>
-<?php endforeach; ?>
-
-<script>
-    function onlyNumber(event) {
-        var angka = (event.which) ? event.which : event.keyCode
-        if (angka != 46 && angka > 31 && (angka < 48 || angka > 57))
-            return false;
-        return true;
-    }
-</script>
-
+            <div class="card-footer">
+                <div class="float-right">
+                    <a href="<?= base_url('barang'); ?>" class="btn btn-secondary">Kembali</a>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 <?= $this->endSection(); ?>
