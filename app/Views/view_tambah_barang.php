@@ -130,23 +130,23 @@
         <div class="card-header">
             <h5>Tambah data</h5>
         </div>
-        <form action="<?= base_url('user/save'); ?>" method="POST" enctype="multipart/form-data">
+        <form action="<?= base_url('barang/save'); ?>" method="POST" enctype="multipart/form-data">
             <?= csrf_field(); ?>
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label>Email</label>
-                            <input type="email" class="form-control <?= ($validation->hasError('email')) ? 'is-invalid' : ''; ?>" id="email" name="email" value="<?= old('email'); ?>" required placeholder="Masukan email">
+                            <label>Kode Barang</label>
+                            <input type="text" class="form-control <?= ($validation->hasError('kode')) ? 'is-invalid' : ''; ?>" id="kode" name="kode" value="<?= old('kode'); ?>" required placeholder="Masukan kode barang">
                             <div class="invalid-feedback">
-                                <?= $validation->getError('email'); ?>
+                                <?= $validation->getError('kode'); ?>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label>Nama</label>
-                            <input type="text" class="form-control <?= ($validation->hasError('nama')) ? 'is-invalid' : ''; ?>" id="nama" name="nama" value="<?= old('nama'); ?>" required placeholder="Masukan nama">
+                            <label>Nama Barang</label>
+                            <input type="text" class="form-control <?= ($validation->hasError('nama')) ? 'is-invalid' : ''; ?>" id="nama" name="nama" value="<?= old('nama'); ?>" required placeholder="Masukan nama barang">
                             <div class="invalid-feedback">
                                 <?= $validation->getError('nama'); ?>
                             </div>
@@ -165,13 +165,30 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label>Level</label>
-                            <select name="level" id="level" required class="form-control <?= ($validation->hasError('level')) ? 'is-invalid' : ''; ?>">
-                                <option value="1">Admin</option>
-                                <option value="0">Super Admin</option>
-                            </select>
+                            <label>Satuan Barang</label>
+                            <input type="text" class="form-control <?= ($validation->hasError('satuan')) ? 'is-invalid' : ''; ?>" id="satuan" name="satuan" value="<?= old('satuan'); ?>" required placeholder="Masukan satuan barang">
                             <div class="invalid-feedback">
-                                <?= $validation->getError('level'); ?>
+                                <?= $validation->getError('satuan'); ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Harga Beli</label>
+                            <input type="text" onkeypress="return onlyNumber(event)" class="form-control <?= ($validation->hasError('beli')) ? 'is-invalid' : ''; ?>" id="beli" name="beli" value="<?= old('beli'); ?>" required placeholder="Masukan harga beli">
+                            <div class="invalid-feedback">
+                                <?= $validation->getError('beli'); ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Harga Jual</label>
+                            <input type="text" onkeypress="return onlyNumber(event)" class="form-control <?= ($validation->hasError('jual')) ? 'is-invalid' : ''; ?>" id="jual" name="jual" value="<?= old('jual'); ?>" required placeholder="Masukan harga jual">
+                            <div class="invalid-feedback">
+                                <?= $validation->getError('jual'); ?>
                             </div>
                         </div>
                     </div>
@@ -186,4 +203,14 @@
         </form>
     </div>
 </div>
+
+<script>
+    function onlyNumber(event) {
+        var angka = (event.which) ? event.which : event.keyCode
+        if (angka != 46 && angka > 31 && (angka < 48 || angka > 57))
+            return false;
+        return true;
+    }
+</script>
+
 <?= $this->endSection(); ?>
