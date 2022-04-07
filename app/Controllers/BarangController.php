@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Barang;
+use App\Models\Supplier;
 
 class BarangController extends BaseController
 {
@@ -15,7 +16,11 @@ class BarangController extends BaseController
 
     public function tambah()
     {
-        $data['validation'] = \Config\Services::validation();
+        $model1 = new Supplier();
+        $data = [
+            'validation' => \Config\Services::validation(),
+            'supplier' => $model1->getSupplier()->getResultArray(),
+        ];
         echo view('view_tambah_barang', $data);
     }
 
